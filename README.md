@@ -41,3 +41,4 @@ This is an introductory sessino about the basics of microcontrollers, environeme
     6- Communication Interfaces: USART, SPI
  The platform communication to PC for programming, communication and debugging through FTDI FT232RL chip USB to serial converter. 
  
+![Arduino Nano](https://github.com/ashrafmalraheem/Mircoprocessor_Course/blob/master/Arduino%20Nano.jpg)
