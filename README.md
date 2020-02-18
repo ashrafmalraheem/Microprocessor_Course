@@ -32,7 +32,7 @@ This is an introductory sessino about the basics of microcontrollers, environeme
 ### Our Developing Platform:
   Arduino Nano platform: open hardare project designed by Arduino. It is a clone version. 
   It has an ATmega328p microcontroller. 
-  General Charactersitics: 
+  #### General Charactersitics: 
     1- 8-bit MCE
     2- 32KB flash, 1KB EEPROM, 2KB SRAM.
     3- Two 8-bit Timers/counters, One 16-bit Timer/coutner
