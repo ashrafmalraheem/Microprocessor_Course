@@ -16,7 +16,7 @@
 #------------------------------------------------------------------------------
 
 # Add your target here
-TARGET  = LED_Blink
+TARGET  = main
 # Add your mcu type here
 MCU = atmega328p
 # Add your Platform here
@@ -24,6 +24,8 @@ PLATFORM = arduino
 # Add the mcu crystal frequency here
 CLOCK_FREQ = 16000000UL
 # Add the com port that your platform is connected to
-COM = COM13
+COM =
 # Add the baud rate here
 BAUD_RATE = 57600
+# Add the OS 
+OS = LINUX

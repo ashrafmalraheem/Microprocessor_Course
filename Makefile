@@ -41,19 +41,34 @@ LINKER_FILE =  -T ../msp432p401r.lds
 
 
 # Compiler Flags and Defines
-LD = arm-none-eabi-ld
-LDFLAGS = -Wl,-Map=$(TARGET).map\
-	  -O0
+LD = avr-objcopy
+LDFLAGS  = -O ihex -R .eeprom -R .fuse -R .lock -R .signature -R .user_signatures
 CFLAGS  := -O1 -Wall -std=gnu99 -DF_CPU=$(CLOCK_FREQ) -mmcu=$(MCU) 
 CPPFLAGs = -E
 ASFLAGS  = -S
+AVRPATH  = "C:\MinGW\avr8-gnu-toolchain\bin/"
 ifeq ($(MCU),atmega328p)
-	CC = avr-gcc
-	SIZEUTIL = avr-size
+	CC = $(AVRPATH)avr-gcc
+	SIZEUTIL = $(AVRPATH)avr-size
 # Add Bootloader and its Config file
-	BOOTLOADER = avrdude
+	BOOTLOADER = $(AVRPATH)avrdude
 	BOOT_CONFIG = avrdude.conf
 endif
+
+# Linux and Windows CMD commands
+ifeq ($(OS),LINUX)
+	DELETE = rm -f
+	LIST_DIR = ls -la
+else
+	DELETE = del
+	LIST_DIR = dir
+endif
+
+ifndef COM
+$(error COM is not set)
+endif
+
+# Recipes
 OBJS  := $(SOURCES:.c=.o)
 %.o : %.c
 	$(CC) -c $< $(CFLAGS) $(INCLUDES) -B$(LINK_INC) -MD -MP -MF "$(TARGET).d" -MT"$(TARGET).d" -o $@
@@ -70,20 +85,20 @@ ASMBDUMP := $(OBJS:.o=.asm)
 DEP   := $(SOURCES:.c=.d)
 %.d : %.c
 	$(CC) -MM $(INCLUDES) $(CLFAGS) $< -o $@ 
-
+# PHONY Directives
 .PHONY: compile-all 
 compile-all: $(OBJS) 
 
 .PHONY: build 
 build: $(TARGET).hex
 $(TARGET).hex: $(TARGET).o $(TARGET).elf 
-	avr-objcopy -O ihex -R .eeprom -R .fuse -R .lock -R .signature -R .user_signatures  "$(TARGET).elf" "$(TARGET).hex"
+	$(AVRPATH)$(LD) $(LDFLAGS) "$(TARGET).elf" "$(TARGET).hex"
 	$(SIZEUTIL) -Btd $@ $(OBJS)
 
 .PHONY: clean
 clean: 
-	rm -f *.dep *.d *.i *.o *.asm *.out *.hex
-	ls -la
+	$(DELETE) *.dep *.d *.i *.o *.asm *.out *.hex *.elf *.map
+	$(LIST_DIR)
 
 .PHONY: upload
 upload:
