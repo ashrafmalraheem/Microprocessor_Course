@@ -23,12 +23,14 @@
  * Section: Included Files
  */
 #include <io.h>
+#include <stdint.h>
+#include "Template.h"
 
-
-int i;
+uint8_t i;
 int main(void)
 {
     /* Replace with your application code */
 	i++;
+	FunctionLikeThis(&i,i);
 }
 

@@ -33,3 +33,6 @@ uint8_t variable_one;
 /* 
  *  Section: Functions Implementation
  */
+uint8_t FunctionLikeThis(uint8_t* pSrcData, uint8_t bitIndex){
+	return bitIndex;
+}

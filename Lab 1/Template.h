@@ -64,5 +64,5 @@ extern uint8_t variable_one;
  */
 //uint8_t  FunctionLikeThis (uint8_t* pSrcData, uint8_t bitIndex) ;
 //uint8_t  Function_Like_This (uint8_t* pSrcData, uint8_t bitIndex) ;
-
+uint8_t FunctionLikeThis(uint8_t* pSrcData, uint8_t bitIndex);
 #endif	/* TEMPLATE_H */
