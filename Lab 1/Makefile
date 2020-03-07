@@ -89,7 +89,6 @@ DEP   := $(SOURCES:.c=.d)
 # PHONY Directives
 .PHONY: compile-all
 compile-all: $(OBJS)
-	$(CC) -c $< $(CFLAGS) $(INCLUDES) -B$(LINK_INC) -MD -MP -MF "$(TARGET).d" -MT"$(TARGET).d" -o $@
 
 .PHONY: build 
 build: $(TARGET).hex
