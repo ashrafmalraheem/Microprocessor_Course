@@ -24,13 +24,11 @@
  */
 #include <io.h>
 #include <stdint.h>
-#include "Template.h"
 
-uint8_t i;
 int main(void)
 {
     /* Replace with your application code */
+	uint32_t i;
 	i++;
-	FunctionLikeThis(&i,i);
 }
 

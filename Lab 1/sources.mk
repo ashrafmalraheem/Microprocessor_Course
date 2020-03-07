@@ -19,7 +19,8 @@ include specs.mk
 SOURCES = *.c 
 
 # Add your include paths to this variable
-INCLUDES =    -I/include
+CURRENTDIR = $(shell pwd)
+INCLUDES =  -I"$(CURRENTDIR)"
 LINK_INC =
 #Additional sources and include paths for atmega328p MCU
 ifeq ($(MCU),atmega328p)

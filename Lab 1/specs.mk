@@ -24,7 +24,7 @@ PLATFORM = arduino
 # Add the mcu crystal frequency here
 CLOCK_FREQ = 16000000UL
 # Add the com port that your platform is connected to
-COM = COM1
+COM = COM13
 # Add the baud rate here
 BAUD_RATE = 57600
 # Add the OS 
