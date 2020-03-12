@@ -70,13 +70,13 @@ $(error COM is not set)
 endif
 
 # Recipes
-OBJS  = $(SOURCES:.c=.o)
+OBJS  := $(SOURCES:.c=.o)
 %.o : %.c
 	$(CC) -o $@ -c $< $(CFLAGS) $(INCLUDES) -B$(LINK_INC)  
 	$(SIZEUTIL) -Btd $@ 
 ELFS  := $(OBJS:.o=.elf)
-$(TARGET).elf : $(TARGET).o $(OBJS)
-	$(CC) -o $@ $^ -Wl,-Map="$(TARGET).map" -Wl,--start-group -Wl,-lm  -Wl,--end-group -Wl,--gc-sections -mmcu=$(MCU) -B$(LINK_INC) 
+$(TARGET).elf : compile-all
+	$(CC) -o $@ $(OBJS) -Wl,-Map="$(TARGET).map" -Wl,--start-group -Wl,-lm  -Wl,--end-group -Wl,--gc-sections -mmcu=$(MCU) -B$(LINK_INC) 
 PRES  := $(SOURCES:.c=.i)
 %.i : %.c
 	$(CC) -E $(INCLUDES) $(CFLAGS) $< -o $@ 
@@ -94,7 +94,7 @@ compile-all: $(SOURCES)
 
 .PHONY: build 
 build: compile-all $(TARGET).hex
-$(TARGET).hex: $(OBJS) $(TARGET).elf $(TARGET).asm
+$(TARGET).hex: $(TARGET).elf $(TARGET).asm
 	$(AVRPATH)$(LD) $(LDFLAGS) "$(TARGET).elf" "$(TARGET).hex"
 	$(SIZEUTIL) -Btd $@ $(OBJS)
 
