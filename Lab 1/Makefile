@@ -105,7 +105,7 @@ clean:
 
 .PHONY: upload
 upload:
-	$(BOOTLOADER) -C$(BOOT_CONFIG) -v -p$(MCU) -c$(PLATFORM) -P$(COM) -b$(BAUD_RATE) -D -Uflash\:w\:"$(TARGET).hex"\:i
+	$(BOOTLOADER) -C../$(BOOT_CONFIG) -v -p$(MCU) -c$(PLATFORM) -P$(COM) -b$(BAUD_RATE) -D -Uflash\:w\:"$(TARGET).hex"\:i
 
 .PHONY: all
 all: build upload
