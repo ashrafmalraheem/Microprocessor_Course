@@ -72,27 +72,29 @@ endif
 # Recipes
 OBJS  := $(SOURCES:.c=.o)
 %.o : %.c
-	$(CC) -c $< $(CFLAGS) $(INCLUDES) -B$(LINK_INC) -MD -MP -MF "$(TARGET).d" -MT"$(TARGET).d" -o $@
+	$(CC) -o $@ -c $< $(CFLAGS) $(INCLUDES) -B$(LINK_INC)  
 	$(SIZEUTIL) -Btd $@ 
 ELFS  := $(OBJS:.o=.elf)
-$(TARGET).elf : $(TARGET).o
-	$(CC) -o $@ $< -Wl,-Map="$(TARGET).map" -Wl,--start-group -Wl,-lm  -Wl,--end-group -Wl,--gc-sections -mmcu=$(MCU) -B$(LINK_INC) 
+$(TARGET).elf : compile-all
+	$(CC) -o $@ $(OBJS) -Wl,-Map="$(TARGET).map" -Wl,--start-group -Wl,-lm  -Wl,--end-group -Wl,--gc-sections -mmcu=$(MCU) -B$(LINK_INC) 
 PRES  := $(SOURCES:.c=.i)
 %.i : %.c
-	$(CC) -E $(INCLUDES) $(CLFAGS) $< -o $@
+	$(CC) -E $(INCLUDES) $(CFLAGS) $< -o $@ 
 ASMBDUMP := $(SOURCES:.c=.asm)
 %.asm : %.c
 	$(CC) $(CFLAGS) $(INCLUDES) -S $< -o $@
 DEP   := $(SOURCES:.c=.d)
 %.d : %.c
-	$(CC) -MM $(INCLUDES) $(CLFAGS) $< -o $@ 
+	$(CC) -MM $(INCLUDES) $(CFLAGS) -MD -MP $< -o $@ 
+
 # PHONY Directives
 .PHONY: compile-all
-compile-all: $(OBJS)
+compile-all: $(SOURCES)
+	$(CC) -c $^ $(CFLAGS) $(INCLUDES) -B$(LINK_INC)
 
 .PHONY: build 
-build: $(TARGET).hex
-$(TARGET).hex: $(TARGET).o $(TARGET).elf $(TARGET).asm
+build: compile-all $(TARGET).hex
+$(TARGET).hex: $(TARGET).elf $(TARGET).asm
 	$(AVRPATH)$(LD) $(LDFLAGS) "$(TARGET).elf" "$(TARGET).hex"
 	$(SIZEUTIL) -Btd $@ $(OBJS)
 
@@ -106,4 +108,4 @@ upload:
 	$(BOOTLOADER) -C$(BOOT_CONFIG) -v -p$(MCU) -c$(PLATFORM) -P$(COM) -b$(BAUD_RATE) -D -Uflash\:w\:"$(TARGET).hex"\:i
 
 .PHONY: all
-all: clean build upload
+all: build upload
