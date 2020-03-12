@@ -30,6 +30,7 @@
  *  Section: Macros Definitions
  */
 #define LIKE_THIS
+#define BIT5  0b00100000
 /*
  *  Section: Data Types
  */

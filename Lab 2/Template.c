@@ -23,6 +23,9 @@
  * Section: Included Files
  */
 #include "Template.h"
+#include <io.h>
+#include <delay.h>
+
 
 /*
  *  Section: Variables Declaration 
@@ -34,5 +37,7 @@ uint8_t variable_one;
  *  Section: Functions Implementation
  */
 uint8_t FunctionLikeThis(uint8_t* pSrcData, uint8_t bitIndex){
+	PINB = BIT5;
+	_delay_ms(100);
 	return bitIndex;
 }
