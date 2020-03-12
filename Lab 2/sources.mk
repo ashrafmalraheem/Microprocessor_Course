@@ -16,7 +16,7 @@
 #------------------------------------------------------------------------------
 # Add your Source files to this variable
 include specs.mk
-SOURCES = *.c 
+SOURCES := *.c 
 
 # Add your include paths to this variable
 CURRENTDIR = $(shell pwd)
