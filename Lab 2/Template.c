@@ -38,6 +38,6 @@ uint8_t variable_one;
  */
 uint8_t FunctionLikeThis(uint8_t* pSrcData, uint8_t bitIndex){
 	PINB = BIT5;
-	_delay_ms(100);
+	_delay_ms(200);
 	return bitIndex;
 }

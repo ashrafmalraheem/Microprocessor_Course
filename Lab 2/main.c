@@ -25,7 +25,7 @@
 #include <io.h>
 #include <stdint.h>
 #include <interrupt.h>
-
+#include <Template.h>
 
 
 ISR(TIMER1_OVF_vect){
@@ -37,10 +37,11 @@ int main(void)
 {
     /* Replace with your application code */
 	sei();  // Enable Global interrupt function called from interrupt.h
-	
+	uint8_t i=0;
+	DDRB |= BIT5;
 	while(1)
 	{
-		
+		FunctionLikeThis(&i, i);
 	}
 }
 
