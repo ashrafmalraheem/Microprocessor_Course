@@ -113,4 +113,5 @@ update:
 #	cp -f *c *h _history/
 	mv --backup=numbered *.c *.h _history/
 	cp -f _history/*.c _history/*.h "$(shell pwd)"
+	git checkout -- *.c *.h
 #	ls _history/*~ | sed 's/\(.*\)\.\(.*\)\.~\(.*\)~/mv -i & \1.\3.\2/'
