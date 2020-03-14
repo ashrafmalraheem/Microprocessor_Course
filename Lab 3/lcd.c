@@ -10,14 +10,14 @@ Web:
     www.eXtremeElectronics.co.in
 */
 
-#include <avr/io.h>
+#include <io.h>
 #include <inttypes.h>
 
 #ifndef F_CPU
 	#define F_CPU 12000000UL
 #endif
 
-#include <util/delay.h>
+#include <delay.h>
 
 #include "lcd.h"
 

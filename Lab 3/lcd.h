@@ -1,10 +1,10 @@
-#include <avr/io.h>
+#include <io.h>
 
 #ifndef F_CPU
 	#define F_CPU 12000000UL
 #endif
 
-#include <util/delay.h>
+#include <delay.h>
 
 #include "myutils.h"
 
