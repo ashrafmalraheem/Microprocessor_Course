@@ -157,7 +157,7 @@ void LCDBusyLoop()
 }
 
 void InitLCD(uint8_t style)
-{
+{	
 	/*****************************************************************
 	
 	This function Initializes the lcd module
@@ -169,7 +169,6 @@ void InitLCD(uint8_t style)
 	LS_ULINE :Cursor is "underline" type else "block" type
 
 	*****************************************************************/
-	
 	//After power on Wait for LCD to Initialize
 	_delay_ms(30);
 	
