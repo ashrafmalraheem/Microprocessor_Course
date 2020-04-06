@@ -51,6 +51,7 @@ ifeq ($(MCU),atmega328p)
 	CC = $(AVRPATH)avr-gcc
 	SIZEUTIL = $(AVRPATH)avr-size
 	AS       = $(AVRPATH)avr-as
+	CFLAGS += -Wl,-u,vfprintf -lprintf_flt -lm
 # Add Bootloader and its Config file
 	BOOTLOADER = $(AVRPATH)avrdude
 	BOOT_CONFIG = avrdude.conf
@@ -76,7 +77,7 @@ OBJS  := $(SOURCES:.c=.o)
 	$(SIZEUTIL) -Btd $@ 
 ELFS  := $(OBJS:.o=.elf)
 $(TARGET).elf : compile-all
-	$(CC) -o $@ $(OBJS) -Wl,-Map="$(TARGET).map" -Wl,--start-group -Wl,-lm  -Wl,--end-group -Wl,--gc-sections -mmcu=$(MCU) -B$(LINK_INC) 
+	$(CC) -o $@ $(OBJS) $(CFLAGS) -Wl,-Map="$(TARGET).map" -Wl,--start-group -Wl,-lm  -Wl,--end-group -Wl,--gc-sections -B$(LINK_INC) 
 PRES  := $(SOURCES:.c=.i)
 %.i : %.c
 	$(CC) -E $(INCLUDES) $(CFLAGS) $< -o $@ 

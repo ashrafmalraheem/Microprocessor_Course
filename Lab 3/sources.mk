@@ -26,7 +26,7 @@ LINK_INC =
 ifeq ($(MCU),atmega328p)
   SOURCES  +=
   INCLUDES += -I/"C:\MinGW\avr8-gnu-toolchain\avr\include\util" \
-			  -I/"C:\MinGW\avr8-gnu-toolchain\avr\include\avr" \
+			  -I/"C:\MinGW\avr8-gnu-toolchain\avr\include\avr"  \
               -I/"C:\MinGW\avr8-gnu-toolchain\avr\include"
   LINK_INC += "C:\MinGW\avr8-gnu-toolchain\avr\lib\avr5"
 endif
