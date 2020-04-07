@@ -29,7 +29,7 @@
 #      compile-all - build all files without linking
 #      clean       - removes all generated files
 #      upload      - upload the output file into Arduino platform
-#      reupload    - clean, build and upload the output file into the platform
+#      all         - clean, build and upload the output file into the platform
 # Platform Overrides:
 #      PLATFORM -  The platform for the output file to executre (atmega328p)
 #
