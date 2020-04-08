@@ -30,7 +30,8 @@
 #include "LogMessage.h"
 
 #define BIT5  0b00100000
-#define BAUD_RATE 2400
+#define BAUD_RATE     2400
+#define NO_OF_BITS    8BITS
 
 int main(void)
 {
@@ -42,13 +43,13 @@ int main(void)
 	//i++;
 	unsigned char Ping_message[11]={0x01, 0x05, 0x0D, 0x41, 0x42, 0x43, 0x44, 0x45, 0xD0, 0xEA,0x04};
 	DDRB |= BIT5;
-	USART_Init(BAUD_RATE, 8, NONE, 1);
+	USART_Init(BAUD_RATE, NO_OF_BITS, NONE, 1);
 	_delay_ms(100);
 	while(1){
 		PINB = BIT5;
 		_delay_ms(1000);
 		//USART_Transmit(j++);
-		Log_Float((char*)"float is not working why?",float_k);
+		Log_Float((char*)"float is now working :) :0",float_k);
 		//float_k *= (j++);
 		/*for(j=0;j<10;j++){
 		USART_Transmit(Ping_message[j]);

@@ -44,7 +44,7 @@ void Log_Float(char* pLog_txt, float Log_value)
       
    sprintf (msg , "%s %lf", pLog_txt, Log_value) ;                                                   
    
-   send_data_process((uint8_t*)msg, strlen(msg)+1 , LOG_MSG , 0);     
+   send_data_process((uint8_t*)msg, strlen(msg) , LOG_MSG , 0);     
 }
 //==========================================================================//
 
@@ -55,7 +55,7 @@ void Log_Int (char* pLog_txt, int32_t Log_value){ // takes text and unsigned int
    char msg [LOG_MAX_BUFFER] ;
       
    sprintf (msg , "%s %ld", pLog_txt, Log_value) ;
-   send_data_process((uint8_t*)msg, strlen(msg)+1 , LOG_MSG , 0);     
+   send_data_process((uint8_t*)msg, strlen(msg) , LOG_MSG , 0);     
 }
 //==========================================================================//
 
@@ -79,7 +79,7 @@ void Log_Hex(char* pLog_txt, char* pHex_Log, uint16_t Hex_len)   //, int flip)  
       //Log_Int((char*)"Length",strlen(msg),port_in_use);
     }
        
-    send_data_process( (uint8_t*)msg, strlen(msg)+1 , LOG_MSG , 0);     
+    send_data_process( (uint8_t*)msg, strlen(msg) , LOG_MSG , 0);     
     
 }
 
@@ -103,7 +103,7 @@ void Log_Int_Arr (char* pLog_txt, char* pLog_array, uint16_t Arr_len)           
       strcat(msg, temp) ;                                                      // concatinate string & array of hex in one array
     }
                                                             
-    send_data_process((uint8_t*)msg, strlen(msg)+1 , LOG_MSG , 0);     
+    send_data_process((uint8_t*)msg, strlen(msg) , LOG_MSG , 0);     
 }
 
 

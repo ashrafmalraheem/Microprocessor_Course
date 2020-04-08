@@ -125,9 +125,9 @@ void send_data_process(uint8_t *data, uint8_t transmit_data_length,
    TxPacketLng = transmit_data_length; 
    /* Copy the Message to the Tx Buffer */
    memcpy(TxDataBuff+DATA_INDEX , data , transmit_data_length);           
-   TxDataBuff [DATA_INDEX + transmit_data_length-1]      = 13; // ASCII Carriage return jump to start of newline
+   TxDataBuff [DATA_INDEX + transmit_data_length]    = '\n'; // Data Stream ends by new line
    // ============== Send the data in serial UART Port and wait until the end =================// 
-   for (int i =0 ; i<TxPacketLng ; i++)
+   for (int i =0 ; i<=TxPacketLng ; i++)
       {                                   
          while(tx_hw_buffer_status()== UART_TX_FULL);  // wait until it is empty
 		 send(TxDataBuff[i]);   

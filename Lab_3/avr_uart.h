@@ -41,6 +41,13 @@ typedef enum {
 	EVEN,
 	ODD
 }eParity;
+typedef enum {
+	5BITS = 5,
+	6BITS,
+	7BITS,
+	8BITS,
+	9BITS
+}eBits;
 
 /*
  *  Section: Variables Declaration 
@@ -66,7 +73,7 @@ typedef enum {
  * @return none
  */
 
-void USART_Init(uint16_t baud_rate, uint8_t number_of_bits, eParity parity, uint8_t stop_bits);
+void USART_Init(uint16_t baud_rate, eBits number_of_bits, eParity parity, uint8_t stop_bits);
 
 /*
  * @brief check the status of hardware UART TX buffer
