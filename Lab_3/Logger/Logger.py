@@ -23,13 +23,17 @@
  * Section: Included Files
  */'''
 import serial
-
+import time
 print("Logger Program")
-
+TX_BUFFER_MAX_SIZE = 100
 ser = serial.Serial('COM13',baudrate=2400, bytesize=serial.EIGHTBITS, parity=serial.PARITY_NONE, stopbits=serial.STOPBITS_ONE, timeout=None)
 print(ser.name)
-ser.write(b'hello')
+#ser.open(COM13)
+#ser.write(b'hello')
 print(ser.is_open)
-x = ser.read(10)
-print(x)
-
+#x = "logger program"
+while True :
+	x = ser.read_until(b'\n',size = TX_BUFFER_MAX_SIZE)
+	print(str(x))
+	
+ser.close()
