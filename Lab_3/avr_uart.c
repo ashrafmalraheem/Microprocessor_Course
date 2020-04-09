@@ -42,12 +42,12 @@ void USART_Init(uint16_t baud_rate, eBits number_of_bits, eParity parity, uint8_
 	/*Enable receiver and transmitter */
 	UCSR0B = (1<<RXEN0)|(1<<TXEN0);
 	/* Set frame format: 7data, 1stop bit */
-	if (number_of_bits == 7BITS){
+	if (number_of_bits == _7BITS){
 		UCSR0C |= (1<<UCSZ01);  // 7 bit
 	}
-	else if(number_of_bits == 8BITS){
+	else if(number_of_bits == _8BITS){
 		UCSR0C |= ((1<<UCSZ01) | (1<<UCSZ00)); // for 8 bit set UCSZ00 
-	}else if (number_of_bits == 9BITS){
+	}else if (number_of_bits == _9BITS){
 		UCSR0C |= ((1<<UCSZ01) | (1<<UCSZ00)); // 8 bit
 		UCSR0B |= (1<<UCSZ02); // 9th bit
 	}

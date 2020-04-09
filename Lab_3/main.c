@@ -30,8 +30,10 @@
 #include "LogMessage.h"
 
 #define BIT5  0b00100000
+
+
 #define BAUD_RATE     2400
-#define NO_OF_BITS    8BITS
+#define NO_OF_BITS    _8BITS
 
 int main(void)
 {

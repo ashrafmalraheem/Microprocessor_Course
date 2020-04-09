@@ -42,11 +42,11 @@ typedef enum {
 	ODD
 }eParity;
 typedef enum {
-	5BITS = 5,
-	6BITS,
-	7BITS,
-	8BITS,
-	9BITS
+	_5BITS = 5,
+	_6BITS,
+	_7BITS,
+	_8BITS,
+	_9BITS
 }eBits;
 
 /*
