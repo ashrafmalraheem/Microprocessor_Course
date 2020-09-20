@@ -1,10 +1,10 @@
 '''/*****************************************************************************
- * Copyright (C) 2020 by R&D SEDC
+ * Copyright (C) 2020 by Ashraf Abdalraheem
  *
  * Redistribution, modification or use of this software in source or binary
  * forms is permitted as long as the files maintain this copyright. Users are
  * permitted to modify this and use it to learn about the field of embedded
- * software. SEDC are not liable for any misuse of this material.
+ * software. Ashraf Abdalraheem is not liable for any misuse of this material.
 ****************************************************************************/'''
 '''/**
  * @file Logger.py
@@ -12,7 +12,7 @@
  *
  *  
  *
- * @author: R&D SEDC
+ * @author: Ashraf Abdalraheem
  * @Modifyed: 
  * @date February 13, 2020, 2:20 PM
  *
@@ -36,7 +36,7 @@ def logging(log_file):
         x = spec_file.readline()
         if x.find('COM = ') != -1:
             COM_PORT = 'COM' + x.strip('COM = \n')
-    ser = serial.Serial(COM_PORT,baudrate=BAUD_RATE, bytesize=serial.EIGHTBITS, parity=serial.PARITY_NONE, stopbits=serial.STOPBITS_ONE, timeout=None, exclusive = 1)
+    ser = serial.Serial(COM_PORT,baudrate=BAUD_RATE, bytesize=serial.SEVENBITS, parity=serial.PARITY_EVEN, stopbits=serial.STOPBITS_ONE, timeout=None, exclusive = 1)
     #ser.open(COM13)
     #ser.write(b'hello')
     print(COM_PORT)
@@ -53,8 +53,8 @@ def logging(log_file):
 
 
 ## Constants
-BAUD_RATE = 2400
-TX_BUFFER_MAX_SIZE = 100
+BAUD_RATE = 19200
+TX_BUFFER_MAX_SIZE = 1000
 ''' Logging Directory and File'''
 DIR = "Logs/"
 if not os.path.exists(DIR):
