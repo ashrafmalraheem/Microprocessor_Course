@@ -1,0 +1,3 @@
+Lecture in LCDs but not in the first ones. Types of LCDs (Matrix, segemtend, ....)
+Lecture in EEPROM and memory
+Lecture in memory organization 
