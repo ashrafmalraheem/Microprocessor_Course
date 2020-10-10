@@ -32,7 +32,7 @@
 /*
  * Section: Macros
  */
-#define BIT5  0b00100000
+#define BIT5          0b00100000
 #define BAUD_RATE     19200
 #define NO_OF_BITS    _7BITS
 #define PARITY        EVEN
@@ -63,12 +63,15 @@ int main(void)
 	/*** set section ***/
 	USART_Init(BAUD_RATE, NO_OF_BITS, PARITY, 1);
 	ADC_Setup();
-	Log_Int((char*)"Hello World",ADCSRA);
+	Log_Int((char*)"Hello World",0);
 	while(1){
 		/*** Loop section ***/
+		ADC_StartConvert();
+		
 		_delay_ms(1000);
 		/*Print the reading */	
 		Log_Float((char*)"Temperature",GetTemperature(GetResistor(ADC_read())));
+		
 		
 	}
 }
@@ -84,7 +87,6 @@ void ADC_Setup(){
 	ADMUX |= 1<<REFS0;
 	// Set Prescaler to 128, so that the ADC clock is 16M/128= 125Khz
 	ADCSRA |= (1<<ADPS2)|(1<<ADPS1)|(1<<ADPS0);
-	ADCSRA |= (1<<ADSC) | (1<<ADATE);
 	
 }
 void ADC_StartConvert(){
