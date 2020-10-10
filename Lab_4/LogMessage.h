@@ -36,6 +36,15 @@
  *  Section: Functions Prototype
  */
 
+ /*
+ * @brief Log String variables
+ *
+ * This function take a text variable and store it in array and place it in the UART Tx buffer
+ *
+ * @param string text 
+ */
+void Log_String(char* pLog_txt);
+
 /*
  * @brief Log float variables
  *

@@ -30,16 +30,23 @@
 /*
  *  Section: Variables Declaration 
  */
-uint8_t          Logging_Enabled = 1;
 
 /* 
  *  Section: Functions Implementation
  */
+ 
+ void Log_String(char* pLog_txt)                                            
+{
+     
+   char msg [LOG_MAX_BUFFER] ;
+      
+   sprintf (msg , "%s", pLog_txt) ;                                                   
+   
+   send_data_process((uint8_t*)msg, strlen(msg) , LOG_MSG , 0);     
+}
+
 void Log_Float(char* pLog_txt, float Log_value)                                            
 {
-   if(Logging_Enabled  == 0)
-      return ;
-      
    char msg [LOG_MAX_BUFFER] ;
       
    sprintf (msg , "%s %lf", pLog_txt, Log_value) ;                                                   
@@ -48,10 +55,7 @@ void Log_Float(char* pLog_txt, float Log_value)
 }
 //==========================================================================//
 
-void Log_Int (char* pLog_txt, int32_t Log_value){ // takes text and unsigned integer32 as parameters and store them in one array and send it to PC port
-   if(Logging_Enabled  == 0)
-      return ;
-      
+void Log_Int (char* pLog_txt, int32_t Log_value){ // takes text and unsigned integer32 as parameters and store them in one array and send it to PC port   
    char msg [LOG_MAX_BUFFER] ;
       
    sprintf (msg , "%s %ld", pLog_txt, Log_value) ;
@@ -61,9 +65,6 @@ void Log_Int (char* pLog_txt, int32_t Log_value){ // takes text and unsigned int
 
 void Log_Hex(char* pLog_txt, char* pHex_Log, uint16_t Hex_len)   //, int flip)                     // taks text and array of hex as parameters and store them in one array and send it to PC port
 {
-   if(Logging_Enabled  == 0){
-      return ;
-   }
    if (Hex_len > LOG_MAX_BUFFER){
        return ;
    }
@@ -85,9 +86,6 @@ void Log_Hex(char* pLog_txt, char* pHex_Log, uint16_t Hex_len)   //, int flip)  
 
 void Log_Int_Arr (char* pLog_txt, char* pLog_array, uint16_t Arr_len)                                 // taks text and array of unsigned int as parameters and store them in one array and send it to PC port
 {
-   if(Logging_Enabled  == 0){
-         return ;
-   }
    if (Arr_len > LOG_MAX_BUFFER)
    {
        return ;
@@ -105,5 +103,4 @@ void Log_Int_Arr (char* pLog_txt, char* pLog_array, uint16_t Arr_len)           
                                                             
     send_data_process((uint8_t*)msg, strlen(msg) , LOG_MSG , 0);     
 }
-
 
